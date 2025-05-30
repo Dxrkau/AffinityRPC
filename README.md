@@ -1,4 +1,5 @@
 # AffinityRPC
+
 A Free Discord Rich Presence Script for FiveM
 Created by Affinity Development
 Join our community: discord.gg/affinitydev
