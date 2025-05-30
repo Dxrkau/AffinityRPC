@@ -5,7 +5,8 @@ Created by Affinity Development
 Join our community: discord.gg/affinitydev
 
 What is AffinityRPC?
-AffinityRPC lets you add custom Discord Rich Presence to your FiveM server, giving players a polished and interactive experience on their Discord profiles.
+
+AffinityRPC is a custom Rich Presence Script With Displaying Players Nickname, FPS, ID and Server Logos 
 
 Setup Instructions
 
