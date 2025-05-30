@@ -34,7 +34,7 @@ https://cdn.discordapp.com/attachments/1376285546380398652/1377956085582790656/S
 https://cdn.discordapp.com/attachments/1376285546380398652/1377956085327204362/Screenshot_2025-05-30_195457.png?ex=683ad91b&is=6839879b&hm=a33d2583abbfdeaed8015c1b4aea17a33ef66f4404b7e3425d212b456a9cb754&
 
 
-🔗 Configuring Your Script
+Configuring Your Script
 
 In client.lua:
 
@@ -42,7 +42,7 @@ Line 1 – Paste your Discord Application ID.
 
 Lines 2 & 3 – Enter the image key names you uploaded for your logo or icon.
 
-✅ Done!
+Done!
 Restart your FiveM resource and your custom Discord Rich Presence should now appear when players connect to your server!
 
 Need help? Join our support server: discord.gg/affinitydev
