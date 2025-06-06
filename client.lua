@@ -1,6 +1,6 @@
-local appid = '' 
-local image1 = ''
-local image2 = ''
+local Config = LoadResourceFile(GetCurrentResourceName(), 'config.lua')
+assert(load(Config))()
+
 local prevtime = GetGameTimer()
 local prevframes = GetFrameCount()
 local fps = -1
@@ -33,9 +33,9 @@ end)
 function SetRP()
     local name = GetPlayerName(PlayerId())
     local id = GetPlayerServerId(PlayerId())
-    SetDiscordAppId(appid)
-    SetDiscordRichPresenceAsset(image1)
-    SetDiscordRichPresenceAssetSmall(image2)
+    SetDiscordAppId(Config.DiscordAppID)
+    SetDiscordRichPresenceAsset(Config.LargeImage)
+    SetDiscordRichPresenceAssetSmall(Config.SmallImage)
 end
 
 CreateThread(function()
@@ -45,7 +45,6 @@ CreateThread(function()
         prevtime = GetGameTimer()
     end
 
-    local updateInterval = 45000  
     local lastUpdate = GetGameTimer()
 
     while true do
@@ -54,11 +53,16 @@ CreateThread(function()
         SetDiscordRichPresenceAssetText('Affinity')
 
         local currentTime = GetGameTimer()
-        if (currentTime - lastUpdate) > updateInterval then
-            SetRichPresence("Players: " .. playerCount .. " | FPS: " .. fps .. " | Nick: " .. GetPlayerName(PlayerId()) .. " | ID: " .. GetPlayerServerId(PlayerId()) .. "")
+        if (currentTime - lastUpdate) > Config.StatusUpdateInterval then
+            SetRichPresence(string.format("Players: %d | FPS: %d | Nick: %s | ID: %d", 
+                playerCount, 
+                fps, 
+                GetPlayerName(PlayerId()), 
+                GetPlayerServerId(PlayerId())
+            ))
 
-            SetDiscordRichPresenceAction(0, "Discord", 'https://discord.gg/affinitydev')
-            SetDiscordRichPresenceAction(1, "FiveM", 'https://discord.gg/affinitydev')
+            SetDiscordRichPresenceAction(0, "Discord", Config.DiscordInvite)
+            SetDiscordRichPresenceAction(1, "FiveM", Config.FiveMInvite)
 
             lastUpdate = currentTime
         end
@@ -68,6 +72,6 @@ end)
 CreateThread(function()
     while true do
         TriggerServerEvent('affinity-rpc:UpdatePlayerCount')
-        Wait(5000)
+        Wait(Config.PlayerCountUpdateInterval)
     end
 end)
